@@ -15,7 +15,7 @@
   	<div id="logo">UOC Reader's Clan</div>
   	<img src="img/uoclogo.png" width="66" height="69" alt=""/>
   </div>
-  
+
   <div id="nav_bar"></div>
   <div id="content_wrapper">
   <h1>Welcome to the UOC Readers' Clan</h1>
@@ -24,7 +24,7 @@
   	<img src="img/login.png" width="66" height="69" alt=""/>
   </center>
   <div id="login_wrapper">
-		
+
 		<form action="login.php" method="post">
 		<label>Student Email :</label>
 		<input type="email" name="stu_email" id="email" required="required" placeholder="Lasitha123@gmail.com"/><br/><br />
@@ -35,11 +35,11 @@
 		</form>
   </div>
   </div>
-  	
+
   <div id="footer">
 	<div id="copyright"> www.uocreadersclan.org | 2017 | All Right Reserved</div>
   </div>
-  
+
 </div>
 
 
@@ -50,22 +50,15 @@ session_start();       //<<----------------------------------------- Session
 
 if(isset($_POST["submit"])){
 
-// Create connection
-// $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-//if ($conn->connect_error) {
-//die("Connection failed: " . $conn->connect_error); }
-
 $myusername = mysqli_real_escape_string($conn,$_POST['stu_email']);
-$mypassword = mysqli_real_escape_string($conn,$_POST['stu_pw']); 
+$mypassword = mysqli_real_escape_string($conn,$_POST['stu_pw']);
 
 $sql = " SELECT fname FROM users WHERE email = '$myusername' and password = '$mypassword' " ;
 $result = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 //$active = $row['active'];
 $count = mysqli_num_rows($result);
-	
+
 // If result matched $myusername and $mypassword, table row must be 1 row
 		
 if($count == 1) {
@@ -74,13 +67,13 @@ if($count == 1) {
 
 
 
-         
+
 	header("location: home.php"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Landing page
 				}
 else {
 echo "<br>" . "<h2>Sorry! Your Login Name or Password is invalid</h2>";
 echo "<script type= 'text/javascript'>alert('Sorry! Your Login Name or Password is invalid');</script>";
-}      
+}
 
 $conn->close();
 }
